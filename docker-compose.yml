@@ -1,0 +1,54 @@
+version: '2'
+services:
+    scalemanager-history-db:
+        image: mysql/mysql-server
+        ports:
+            - "3308:3306"
+        links:
+            - scalemanager-history-php
+        environment:
+            - MYSQL_USER=scalemanager-history
+            - MYSQL_PASSWORD=scalemanager-history
+            - MYSQL_DATABASE=scalemanager-history
+            - MYSQL_ROOT_PASSWORD=
+            - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    scalemanager-history:
+        build:
+            context: .
+            dockerfile: history/docker/nginx/Dockerfile
+        ports:
+            - "82:80"
+        links:
+            - scalemanager-history-php
+    scalemanager-history-php:
+        image: php:7.1-fpm
+        ports:
+            - "9002:9000"
+        volumes:
+            - ./history:/var/www/html
+    scalemanager-log-db:
+        image: mysql/mysql-server
+        ports:
+            - "3310:3306"
+        links:
+            - scalemanager-log-php
+        environment:
+            - MYSQL_USER=scalemanager-log
+            - MYSQL_PASSWORD=scalemanager-log
+            - MYSQL_DATABASE=scalemenager-log
+            - MYSQL_ROOT_PASSWORD=
+            - MYSQL_ALLOW_EMPTY_PASSWORD=true
+    scalemanager-log:
+        build:
+            context: .
+            dockerfile: log/docker/nginx/Dockerfile
+        ports:
+            - "84:80"
+        links:
+            - scalemanager-history-php
+    scalemanager-log-php:
+        image: php:7.1-fpm
+        ports:
+            - "9004:9000"
+        volumes:
+            - ./log:/var/www/html
