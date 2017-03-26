@@ -1,0 +1,11 @@
+{
+    "name": "internetx/scale-manager",
+    "description": "Rule based automatic scaling of virtual resources",
+    "type": "application",
+    "license": "MIT",
+    "minimum-stability": "stable",
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "^6.0"
+    }
+}
