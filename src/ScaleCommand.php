@@ -56,16 +56,19 @@ abstract class ScaleCommand implements ScaleCommandInterface
 	 * @param float  $value    The change value
 	 * @param string $type     The type of value, one of the ScaleCommand constants
 	 */
-	public function __construct($instance, $value, $type)
+	public function __construct(string $instance, float $value, string $type = self::ABSOLUTE)
 	{
+		$this->instance = $instance;
+		$this->type     = $type;
+		$this->value    = $value;
 	}
 
 	/**
-	 * Get the type of change, i.e., one of 'absolute', 'relative', or 'percentage'
+	 * Get the type of change, i.e., one of the ScaleCommand constants
 	 *
 	 * @return string The type
 	 */
-	public function getType()
+	public function getType(): string
 	{
 		return $this->type;
 	}
@@ -75,7 +78,7 @@ abstract class ScaleCommand implements ScaleCommandInterface
 	 *
 	 * @return float The value
 	 */
-	public function getValue()
+	public function getValue(): float
 	{
 		return $this->value;
 	}
@@ -85,7 +88,7 @@ abstract class ScaleCommand implements ScaleCommandInterface
 	 *
 	 * @return string The instance ID
 	 */
-	public function getInstance()
+	public function getInstance(): string
 	{
 		return $this->instance;
 	}
