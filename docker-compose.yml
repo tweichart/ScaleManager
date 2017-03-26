@@ -11,13 +11,17 @@ services:
         volumes:
             - "./:/var/www/html"
     scalemanager-php:
-        image: php:7.1-fpm
+        build:
+            context: .
+            dockerfile: tests/fixtures/Dockerfile-php
         ports:
             - "9002:9000"
         volumes:
             - "./:/var/www/html"
     scalemanager-eventlog-db:
-        image: mysql/mysql-server
+        build:
+            context: .
+            dockerfile: tests/fixtures/Dockerfile-eventlog
         ports:
             - "3308:3306"
         environment:

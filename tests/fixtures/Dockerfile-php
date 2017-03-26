@@ -1,0 +1,19 @@
+# Set the base image
+FROM php:7.1-fpm
+# Set Timezone to Europe/Berlin
+RUN rm /etc/localtime \
+        && ln -s /usr/share/zoneinfo/Europe/Berlin /etc/localtime
+# Expose php-fpm Port
+EXPOSE 9000
+# Install Packages
+RUN apt-get update && \
+ apt-get install -y g++ zlib1g-dev libicu-dev && \
+ docker-php-ext-configure pdo && \
+ docker-php-ext-install pdo && \
+ docker-php-ext-configure pdo_mysql && \
+ docker-php-ext-install pdo_mysql && \
+ docker-php-ext-configure intl && \
+ docker-php-ext-install intl && \
+ yes | pecl install xdebug
+# Configure
+RUN mkdir /var/run/php-fpm && chown -R www-data:www-data /var/run/php-fpm
