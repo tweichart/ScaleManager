@@ -4,6 +4,7 @@ The ScaleManager oversees multiple VM instances and scales them correpsonding to
 
 It consists of multiple micro-services:
 * **Daemon** service running on multiple VM instances reporting states in a predefined period of time
+* **Daemon-API** receiving commands from the manager, builds commands usable by the environment the api runs on for the needed call (e.g. resize API-Call to Hoster)
 * **Collectors** collecting all the data from the daemons, sending the data to the history and the queue which serves the data to the manager
 * **History** receives data to store it in the connected EventLog (MySQL Database)
 * **Queue** stream based queue to provide the event data to the manager for an ordered processing
