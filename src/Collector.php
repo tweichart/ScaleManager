@@ -8,7 +8,7 @@ class Collector{
 
     private $history;
 
-    public function __construct(History $history){
+    public function __construct(HistoryInterface $history){
         $this->history = $history;
     }
 

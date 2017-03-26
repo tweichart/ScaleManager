@@ -1,13 +1,13 @@
 <?php
 
 use IX\ScaleManager\Collector;
-use IX\ScaleManager\History;
+use IX\ScaleManager\HistoryInterface;
 use Slim\Http\Request;
 
 class CollectorTest extends \PHPUnit\Framework\TestCase{
 
     public function testCollect(){
-        $history = $this->createMock(History::class);
+        $history = $this->createMock(HistoryInterface::class);
         $history
             ->expects($this->once())
             ->method('saveEvent');
