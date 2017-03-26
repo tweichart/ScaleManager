@@ -12,10 +12,10 @@ The payload includes:
 - value
 - timestamp
 
-##Collector
+###Collector
 The collector sends the data to the history and puts the data (state) in the queue for processing by the manager.
 
-##History
+###History
 The history is responsible for managing the eventlog. It stores any new states that were sent from the collector.
 History data stored:
 - type
@@ -31,7 +31,7 @@ Required parameter for the query:
 - value
 - condition
 
-##Manager
+###Manager
 The manager polls the queue for new events. The event type is used to check if any rule applies. 
 First the actionlog will be checked if there is any action of the same type active. 
 If an action of the same type is active the event will be skipped.
@@ -49,6 +49,6 @@ Actionlog:
 - timestamp_end
 - event
 
-##Cleaner
+###Cleaner
 The cleaner processes the action log to create new state messages to action which are in a possible faile state.
 Deletes old eventlog entries and aggregates them in an archive
