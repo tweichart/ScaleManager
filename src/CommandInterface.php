@@ -18,5 +18,5 @@ interface CommandInterface
 	 *
 	 * @return string The instance ID
 	 */
-	public function getInstance();
+	public function getInstance(): string;
 }

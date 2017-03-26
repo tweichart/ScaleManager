@@ -57,7 +57,7 @@ class Rule
 	 * @param int              $duration The expected duration
 	 * @param CommandInterface $command  The command to be issued
 	 */
-	public function __construct($type, $value, $operator, $duration, CommandInterface $command)
+	public function __construct(string $type, $value, string $operator, int $duration, CommandInterface $command)
 	{
 		$this->type     = $type;
 		$this->value    = $value;
@@ -71,7 +71,7 @@ class Rule
 	 *
 	 * @return string
 	 */
-	public function getType()
+	public function getType(): string
 	{
 		return $this->type;
 	}
@@ -91,7 +91,7 @@ class Rule
 	 *
 	 * @return string
 	 */
-	public function getOperator()
+	public function getOperator(): string
 	{
 		return $this->operator;
 	}
@@ -101,7 +101,7 @@ class Rule
 	 *
 	 * @return int
 	 */
-	public function getDuration()
+	public function getDuration(): int
 	{
 		return $this->duration;
 	}
@@ -111,7 +111,7 @@ class Rule
 	 *
 	 * @return CommandInterface
 	 */
-	public function getCommand()
+	public function getCommand(): CommandInterface
 	{
 		return $this->command;
 	}
