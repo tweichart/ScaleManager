@@ -6,6 +6,8 @@
  * @license    MIT license; see LICENSE
  */
 
+namespace IX\ScaleManager;
+
 /**
  * Interface ScaleCommandInterface
  */
