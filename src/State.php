@@ -41,6 +41,14 @@ class State
 	 */
 	private $timeStamp;
 
+	/**
+	 * State constructor.
+	 *
+	 * @param string $instance  The instance ID
+	 * @param string $type      The type of the state
+	 * @param mixed  $value     The state value
+	 * @param int    $timeStamp The timestamp
+	 */
 	public function __construct(string $instance, string $type, $value, int $timeStamp)
 	{
 		$this->instance  = $instance;
