@@ -4,51 +4,19 @@ services:
         image: mysql/mysql-server
         ports:
             - "3308:3306"
-        links:
-            - scalemanager-eventlog-php
         environment:
             - MYSQL_USER=scalemanager-eventlog
             - MYSQL_PASSWORD=scalemanager-eventlog
             - MYSQL_DATABASE=scalemanager-eventlog
             - MYSQL_ROOT_PASSWORD=
             - MYSQL_ALLOW_EMPTY_PASSWORD=true
-    scalemanager-eventlog:
-        build:
-            context: .
-            dockerfile: eventlog/docker/nginx/Dockerfile
-        ports:
-            - "82:80"
-        links:
-            - scalemanager-eventlog-php
-    scalemanager-eventlog-php:
-        image: php:7.1-fpm
-        ports:
-            - "9002:9000"
-        volumes:
-            - ./eventlog:/var/www/html
     scalemanager-actionlog-db:
         image: mysql/mysql-server
         ports:
             - "3310:3306"
-        links:
-            - scalemanager-actionlog-php
         environment:
             - MYSQL_USER=scalemanager-actionlog
             - MYSQL_PASSWORD=scalemanager-actionlog
             - MYSQL_DATABASE=scalemenager-actionlog
             - MYSQL_ROOT_PASSWORD=
             - MYSQL_ALLOW_EMPTY_PASSWORD=true
-    scalemanager-actionlog:
-        build:
-            context: .
-            dockerfile: actionlog/docker/nginx/Dockerfile
-        ports:
-            - "84:80"
-        links:
-            - scalemanager-actionlog-php
-    scalemanager-actionlog-php:
-        image: php:7.1-fpm
-        ports:
-            - "9004:9000"
-        volumes:
-            - ./actionlog:/var/www/html
