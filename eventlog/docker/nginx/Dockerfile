@@ -7,5 +7,3 @@ RUN rm /etc/localtime \
 EXPOSE 80
 # Add Config Files
 ADD history/docker/nginx/default.conf /etc/nginx/conf.d
-RUN mkdir -p /var/log/isac/ && touch /var/log/isac/frontend_server.log
-RUN ln -sf /proc/1/fd/1 /var/log/isac/frontend_server.log
