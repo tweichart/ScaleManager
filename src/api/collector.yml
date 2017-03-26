@@ -32,7 +32,7 @@ definitions:
         description: Type of the state, e.g. memory or cpu-load.
       value:
         type: string
-        description: The value the state has.
+        description: The value the state has. In case of memory its the actual size in KB.
       instance:
         type: string
         description: The ID of the instance.
