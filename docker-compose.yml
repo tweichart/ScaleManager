@@ -9,13 +9,13 @@ services:
         links:
             - scalemanager-php
         volumes:
-            - "./src/public:/var/www/html"
+            - "./:/var/www/html"
     scalemanager-php:
         image: php:7.1-fpm
         ports:
             - "9002:9000"
         volumes:
-            - "./src/public:/var/www/html"
+            - "./:/var/www/html"
     scalemanager-eventlog-db:
         image: mysql/mysql-server
         ports:
