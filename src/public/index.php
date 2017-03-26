@@ -11,7 +11,7 @@ $app = new \Slim\App();
 
 $app->post('/state', function (Request $request, Response $response) {
     $response = $response->withStatus(202);
-    $pdo = new PDO('mysql:host=scalemanager-eventlog-db;dbname=scalemanager_eventlog', 'scalemanager_eventlog', 'scalemanager_eventlog');
+    $pdo = new PDO('mysql:host=scalemanager-eventlog-db;dbname=scalemanager_eventlog', 'root');
     $collector = new Collector(new History($pdo));
     $collector->collect($request);
     return $response;

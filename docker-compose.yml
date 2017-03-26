@@ -19,7 +19,9 @@ services:
         volumes:
             - "./:/var/www/html"
     scalemanager-eventlog-db:
-        image: mysql/mysql-server
+        build:
+            context: .
+            dockerfile: tests/fixtures/Dockerfile-eventlog
         ports:
             - "3308:3306"
         environment:
