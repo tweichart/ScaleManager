@@ -11,7 +11,9 @@ services:
         volumes:
             - "./:/var/www/html"
     scalemanager-php:
-        image: php:7.1-fpm
+        build:
+            context: .
+            dockerfile: tests/fixtures/Dockerfile-php
         ports:
             - "9002:9000"
         volumes:
