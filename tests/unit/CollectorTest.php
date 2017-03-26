@@ -1,5 +1,7 @@
 <?php
 
+use IX\ScaleManager\Collector;
+
 class CollectorTest extends \PHPUnit\Framework\TestCase{
 
     public function testCollector(){
