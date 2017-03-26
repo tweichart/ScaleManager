@@ -38,8 +38,10 @@ class Collector
 	 * Collect a State
 	 *
 	 * @param Request $request The request containing the state information
+	 *
+	 * @return void
 	 */
-	public function collect(Request $request): void
+	public function collect(Request $request)
 	{
 		$payload = $this->getPayload($request);
 		$state   = new State($payload->instance, $payload->type, $payload->value, $payload->timestamp);
