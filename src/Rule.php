@@ -35,7 +35,7 @@ class Rule
 	private $operator;
 
 	/**
-	 * Minimum duration of the state needed to trogger the rule
+	 * Minimum duration of the state needed to trigger the rule
 	 *
 	 * @var int Number of seconds
 	 */
