@@ -1,4 +1,4 @@
-#Rules
+#Example rules
 
 - If ram usage > 80% for more than 5 minutes, ram +1gb
 - If systemload > x for more than y minutes,  cpu +1core
