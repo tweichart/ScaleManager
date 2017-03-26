@@ -16,12 +16,9 @@ produces:
 paths:
   /instance/{instanceIP}:
     put:
-      summary: Product Types
+      summary: Instance actions
       description: |
-        The Products endpoint returns information about the *Uber* products
-        offered at a given location. The response includes the display name
-        and other details about each product, and lists the products in the
-        proper display order.
+        Endpoint for modifying instance parameters like ram, cpu and storage.
       parameters:
         - name: instanceIP
           in: path
@@ -48,4 +45,6 @@ paths:
       responses:
         200:
           description: Action successfully triggered
-   
+        406:
+          description: Request could not be executed
+
