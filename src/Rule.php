@@ -20,13 +20,12 @@ class Rule
 	 */
 	private $type;
 
-	private $value;
-
 	/**
 	 * The state value
 	 *
 	 * @var mixed
 	 */
+	private $value;
 
 	/**
 	 * The comparision operator - $testValue $this->operator $this->value
