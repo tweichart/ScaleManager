@@ -15,3 +15,39 @@ It consists of multiple micro-services:
   * After inserting into the ActionLog the command will be sent to the Instance or API managing the instances to take further actions
   * If the command could not be executed the manager also has the possibility to generate alerts, which can be retrieved via different endpoints (mail, chat, etc.)
 * **Cleaner** The cleaner moves old date from the EventLog and the ActionLog to the archive with the goal to keep the index on those databases small
+
+## Running Tests
+
+### Unit Tests
+
+In the project root directory, enter
+
+```bash
+$ vendor/bin/phpunit --bootstrap vendor/autoload.php tests/unit
+```
+
+### Integration Tests
+
+Before you can run the integration tests, you have to setup the expected environment. You need a recent version of `docker-compose` (> 1.10)for that.
+
+Start the environment:
+
+```bash
+$ cd tests/fixtures
+$ docker-compose up -d
+$ cd ../..
+```
+
+Run the tests:
+
+```bash
+$ vendor/bin/phpunit --bootstrap vendor/autoload.php tests/integration
+```
+
+Stop the environment:
+
+```bash
+$ cd tests/fixtures
+$ docker-compose stop
+$ cd ../..
+```

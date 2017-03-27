@@ -14,16 +14,16 @@ namespace IX\ScaleManager;
 interface ScaleCommandInterface extends CommandInterface
 {
 	/**
-	 * Get the type of change, i.e., one of 'absolute', 'relative', or 'percentage'
+	 * Get the type of change, i.e., one of the ScaleCommand constants
 	 *
 	 * @return string The type
 	 */
-	public function getType();
+	public function getType(): string;
 
 	/**
 	 * Get the value
 	 *
 	 * @return float The value
 	 */
-	public function getValue();
+	public function getValue(): float;
 }
