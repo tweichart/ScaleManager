@@ -14,14 +14,14 @@ basePath: /
 produces:
   - application/json
 paths:
-  /instance/{instanceIP}:
-    put:
+  /instance:
+    post:
       summary: Instance actions
       description: |
         Endpoint for modifying instance parameters like ram, cpu and storage.
       parameters:
-        - name: instanceIP
-          in: path
+        - name: instance
+          in: query
           description: Instance IP to be resized
           required: true
           type: string
