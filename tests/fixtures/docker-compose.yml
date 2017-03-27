@@ -3,7 +3,7 @@ services:
     scalemanager-api:
         build:
             context: .
-            dockerfile: tests/fixtures/Dockerfile-nginx
+            dockerfile: Dockerfile-nginx
         ports:
             - "82:80"
         links:
@@ -13,7 +13,7 @@ services:
     scalemanager-php:
         build:
             context: .
-            dockerfile: tests/fixtures/Dockerfile-php
+            dockerfile: Dockerfile-php
         ports:
             - "9002:9000"
         volumes:
@@ -21,7 +21,7 @@ services:
     scalemanager-eventlog-db:
         build:
             context: .
-            dockerfile: tests/fixtures/Dockerfile-eventlog
+            dockerfile: Dockerfile-eventlog
         ports:
             - "3308:3306"
         environment:

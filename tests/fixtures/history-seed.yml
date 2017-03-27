@@ -1,0 +1,11 @@
+history:
+  - id: 1
+    timestamp: 123450000
+    type: "memory"
+    instance: "reseller/1"
+    value: 1024
+  - id: 2
+    timestamp: 123450001
+    type: "cpu"
+    instance: "reseller/1"
+    value: 10

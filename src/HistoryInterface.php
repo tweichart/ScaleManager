@@ -24,12 +24,15 @@ interface HistoryInterface
 	public function saveEvent(State $state): bool;
 
 	/**
-	 * Fire a query against the Event Log and return a bool.
+	 * Fire a query against the Event Log.
 	 * The query is a simple SQL string.
 	 *
-	 * @param string $query JSON that contains the data for the query.
+	 * @param string $instance  The instance ID
+	 * @param string $condition A condition
+	 * @param int    $timeStart Start of the time range
+	 * @param int    $timeEnd   Start of the time range
 	 *
-	 * @return bool True or false wrapped in JSON.
+	 * @return bool Success.
 	 */
-	public function queryEventLog(string $query): bool;
+	public function queryEventLog(string $instance, string $condition, int $timeStart, int $timeEnd): bool;
 }
