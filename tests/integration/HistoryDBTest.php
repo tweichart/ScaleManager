@@ -61,15 +61,17 @@ class HistoryDBTest extends TestCase
 	public function queryDataProvider()
 	{
 		return [
-			'no incidents'                   => [400, 500, false] /**/,
-			'no matching incidents'          => [101, 299, false] /* 200:1000 */,
-			'only matching incidents'        => [201, 400, true] /* 300:1048 */,
-			'both matching and not matching' => [0, 400, false] /* 100:1024, 200:1000, 300:1048 */,
+			'no incidents at all'                      => [400, 500, false] /**/,
+			'no matching incidents'                    => [101, 299, false] /* 200:1000 */,
+			'only matching incidents'                  => [201, 400, true] /* 300:1048 */,
+			'both matching and not matching incidents' => [0, 400, false] /* 100:1024, 200:1000, 300:1048 */,
 		];
 	}
 
 	/**
 	 * @dataProvider queryDataProvider
+	 *
+	 * @testdox      queryEventLog() returns the defined value (true or false), when encountering
 	 */
 	public function testQuery(int $timeStart, int $timeEnd, bool $expected)
 	{
