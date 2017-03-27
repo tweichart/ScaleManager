@@ -16,16 +16,16 @@ class History implements HistoryInterface
 	/**
 	 * The database connection
 	 *
-	 * @var \pdo
+	 * @var \PDO
 	 */
 	private $connection;
 
 	/**
 	 * History constructor.
 	 *
-	 * @param \pdo $connection The database connection
+	 * @param \PDO $connection The database connection
 	 */
-	public function __construct(\pdo $connection)
+	public function __construct(\PDO $connection)
 	{
 		$this->connection = $connection;
 	}
@@ -39,30 +39,46 @@ class History implements HistoryInterface
 	 */
 	public function saveEvent(State $state): bool
 	{
-		$query = $this->connection->prepare(
+		$query     = $this->connection->prepare(
 			'INSERT INTO history (`timestamp`, `type`, `instance`, `value`) VALUES(:timestamp, :type, :instance, :value);'
 		);
-		$query->bindParam(':timestamp', $state->getTimeStamp());
-		$query->bindParam(':type', $state->getType());
-		$query->bindParam(':instance', $state->getInstance());
-		$query->bindParam(':value', $state->getValue());
+
+		$timeStamp = $state->getTimeStamp();
+		$type      = $state->getType();
+		$instance  = $state->getInstance();
+		$value     = $state->getValue();
+
+		$query->bindParam(':timestamp', $timeStamp);
+		$query->bindParam(':type', $type);
+		$query->bindParam(':instance', $instance);
+		$query->bindParam(':value', $value);
 
 		return $query->execute();
 	}
 
 	/**
-	 * Fire a query against the Event Log and return a bool.
-	 * The query is a simple SQL string.
+	 * Fire a query against the Event Log.
 	 *
-	 * @param string $query JSON that contains the data for the query.
+	 * @param string $instance  The instance ID
+	 * @param string $condition A condition
+	 * @param int    $timeStart Start of the time range
+	 * @param int    $timeEnd   End of the time range
 	 *
-	 * @return bool We return true or false wrapped in Json.
+	 * @return bool True if the condition was always true in the given time range.
 	 */
-	public function queryEventLog(string $query): bool
+	public function queryEventLog(string $instance, string $condition, int $timeStart, int $timeEnd): bool
 	{
-		$stmt = $this->connection->prepare($query);
-		$stmt->execute();
+		$query = $this->connection->prepare(
+			"SELECT COUNT(*) FROM `history` WHERE `instance` = :instance AND `timestamp` BETWEEN :timeStart AND :timeEnd AND NOT `value` :condition"
+		);
 
-		return (bool) $stmt->fetchColumn();
+		$query->bindParam(':instance', $instance);
+		$query->bindParam(':timeStart', $timeStart);
+		$query->bindParam(':timeEnd', $timeEnd);
+		$query->bindParam(':condition', $condition);
+
+		$query->execute();
+
+		return $query->fetchColumn() > 0;
 	}
 }
