@@ -22,8 +22,6 @@ class CollectorTest extends \PHPUnit\Framework\TestCase
 	{
 		$history = $this->createMock(HistoryInterface::class);
 
-
-
 		$history
 			->expects($this->once())
 			->method('saveEvent')
@@ -31,15 +29,15 @@ class CollectorTest extends \PHPUnit\Framework\TestCase
 		$collector = new Collector($history);
 		$request   = $this->createMock(Request::class);
 
-        $request
+		$request
 			->expects($this->any())
 			->method('getBody')
 			->willReturn(json_encode([
-										 'instance'  => 'reseller/123',
-										 'type'      => 'memory',
-										 'value'     => '20',
-										 'timestamp' => '123123123',
-									 ]))
+				 'instance'  => 'reseller/123',
+				 'type'      => 'memory',
+				 'value'     => '20',
+				 'timestamp' => '123123123',
+			 ]))
 		;
 		$collector->collect($request);
 	}
