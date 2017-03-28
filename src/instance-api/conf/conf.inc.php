@@ -1,0 +1,16 @@
+<?php
+/**
+ * Part of the InterNetX ScaleManager
+ *
+ * @copyright  Copyright (C) 2017 InterNetX GmbH. All rights reserved.
+ * @license    MIT license; see LICENSE
+ */
+const APIURL = "https://api-proxy.isac.de/ISAC-API";
+const APPKEY = "";
+const DEVKEY = "";
+const ISACUSERNAME = "username";
+const ISACPASSWORD = "password";
+
+const LOGINPATH = "/oauth/token";
+const INSTANCEPATH = "/rest/instance";
+const INSTANCERESIZEPATH = "/rest/instance";
