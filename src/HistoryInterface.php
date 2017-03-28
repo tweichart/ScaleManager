@@ -24,15 +24,11 @@ interface HistoryInterface
 	public function saveEvent(State $state): bool;
 
 	/**
-	 * Fire a query against the Event Log.
-	 * The query is a simple SQL string.
+	 * Ask the Event Log, if a condition persisted for a given time range
 	 *
-	 * @param string $instance  The instance ID
-	 * @param string $condition A condition
-	 * @param int    $timeStart Start of the time range
-	 * @param int    $timeEnd   Start of the time range
+	 * @param Query $query The Query
 	 *
-	 * @return bool Success.
+	 * @return bool True if the condition was always true in the given time range.
 	 */
-	public function queryEventLog(string $instance, string $condition, int $timeStart, int $timeEnd): bool;
+	public function queryEventLog(Query $query): bool;
 }
