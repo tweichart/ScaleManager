@@ -1,7 +1,27 @@
 version: '2'
 services:
+    scalemanager-api:
+        build:
+            context: .
+            dockerfile: Dockerfile-nginx
+        ports:
+            - "82:80"
+        links:
+            - scalemanager-php
+        volumes:
+            - "./:/var/www/html"
+    scalemanager-php:
+        build:
+            context: .
+            dockerfile: Dockerfile-php
+        ports:
+            - "9002:9000"
+        volumes:
+            - "./:/var/www/html"
     scalemanager-eventlog-db:
-        image: mysql/mysql-server
+        build:
+            context: .
+            dockerfile: Dockerfile-eventlog
         ports:
             - "3308:3306"
         environment:
