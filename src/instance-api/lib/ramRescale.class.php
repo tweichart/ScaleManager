@@ -8,12 +8,21 @@
  */
 require_once 'rescaleBuilder.class.php';
 
-
+/**
+ * Class ramRescale
+ */
 class ramRescale extends rescaleBuilder
 {
-    public function calculateValues($instance, $type, $diffValue)
+    /**
+     * @param $instance instance object
+     * @param $type resize type (abs/rel/percent)
+     * @param $diffValue difference value
+     * @return mixed instance object with new ram value
+     */
+    public function calculateValues(stdClass $instance, string $type, int $diffValue)
     {
         $ramNew = $this->adjustValue($instance->ram, $type, $diffValue);
         $instance->ram = $ramNew;
+        return $instance;
     }
 }

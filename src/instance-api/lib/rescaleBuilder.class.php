@@ -6,9 +6,21 @@
  * @license    MIT license; see LICENSE
  */
 
+/**
+ * Class rescaleBuilder
+ */
 class rescaleBuilder
 {
-    function adjustValue($currentValue, $type, $diffValue)
+
+    /**
+     * Adjusts the value
+     *
+     * @param int $currentValue
+     * @param string $type
+     * @param $diffValue
+     * @return int|null new value
+     */
+    public function adjustValue(int $currentValue, string $type, $diffValue)
     {
         $newValue = null;
 

@@ -10,7 +10,10 @@ require_once __DIR__ . '../../conf/conf.inc.php';
 
 use Curl\Curl;
 
-
+/**
+ * Class IsacApiConnector
+ *
+ */
 class IsacApiConnector {
 
     var $token = "";
@@ -23,6 +26,11 @@ class IsacApiConnector {
         $this->curl = new \Curl\Curl();
     }
 
+    /**
+     * Authenticates against the ISAC API
+     *
+     * @return bool Success
+     */
     public function authenticate(){
 
         $loginEndPoint = APIURL . LOGINPATH;
@@ -54,8 +62,14 @@ class IsacApiConnector {
             }
     }
 
-
-    public function findInstanceByIP($ip){
+    /**
+     * Finds an instance by ip address
+     *
+     * @param string $ip ip of the searched instance
+     *
+     * @return null or instance
+     */
+    public function findInstanceByIP(string $ip){
 
         $instances = $this->getInstances();
 
@@ -69,7 +83,11 @@ class IsacApiConnector {
         return $foundInstance;
     }
 
-
+    /**
+     * Retrieves all instances
+     *
+     * @return bool|instance array
+     */
     public function getInstances()
     {
         $instanceEndPoint = APIURL . INSTANCEPATH;
@@ -84,11 +102,15 @@ class IsacApiConnector {
             if ($instances == null) {
                 return FALSE;
             }
+
             return $instances;
 
     }
 
-    function addAuthentication(){
+    /**
+     * Adds the authentication to the curl request
+     */
+    public function addAuthentication(){
 
         // adding the cookies
         foreach($this->cookies as $cookie){
@@ -99,7 +121,14 @@ class IsacApiConnector {
         $this->curl->setHeader("authorization", "bearer " . $this->token );
     }
 
-    function resizeInstance($instance){
+    /**
+     * Triggers the instance resize
+     *
+     * @param $instance instance object with the new parameter (cpu/ram/storage)
+     *
+     * @return bool|null resize result/resized parameter
+     */
+    public function resizeInstance($instance){
 
         $instanceResizeEndPoint = APIURL . INSTANCERESIZEPATH . "/" . $instance->instance_id;
 
@@ -115,6 +144,7 @@ class IsacApiConnector {
         if ($resizeResult == null) {
             return FALSE;
         }
+
         return $resizeResult;
     }
 }
